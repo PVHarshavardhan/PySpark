@@ -1,0 +1,39 @@
+docker-compose up -d
+docker-compose up → Start containers and watch them run.
+docker-compose up -d → Start containers and let them run in the background.
+
+docker-compose is a command not file name,
+if filename is dc.yml
+then we need to specify the file name  --> docker compose -f dc.yml up -d
+
+docker-compose logs broker
+docker-compose exec broker kafka-topics --create --topic processed-events --bootstrap-server localhost:9092 --partitions 3 --replication-factor 1
+
+docker-compose exec broker kafka-topics --create --topic user-events --bootstrap-server localhost:9092 --partitions 3 --replication-factor 1
+
+docker-compose exec broker kafka-topics --list --bootstrap-server localhost:9092
+
+docker-compose exec broker kafka-console-producer --topic user-events --bootstrap-server localhost:9092
+{"user_id": 1,"event": "click", "timestamp": "2024-01-01T12:00:00", "page": "homepage"}
+{"user_id": 2,"event": "purchase", "timestamp": "2024-01-01T12:01:00", "amount": 99.99}
+
+
+>docker-compose exec broker kafka-console-consumer --topic user-events --bootstrap-server localhost:9092 --from-beginning
+
+
+python -m venv venv
+here -m is used to run "venv" as a script
+venv is a module
+venv is a directory name where to create the virtual event
+
+--> command: where python
+
+to activate venv run the activate app in venv
+
+-->  venv\Scripts\activate.bat
+
+python command : pip install kafka-python
+                 pip show kafka-python
+
+
+docker-compose exec broker kafka-console-consumer --bootstrap-server localhost:9092 --topic processed-events --from-beginning

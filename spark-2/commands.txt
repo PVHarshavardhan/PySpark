@@ -1,0 +1,13 @@
+terminal 1 :
+chmod +x start_demo.sh
+./start_demo.sh
+
+terminal 2:
+docker ps
+source venv/bin/activate
+python producer.py
+
+
+terminal 3:
+source venv/bin/activate
+python dashboard.py
